@@ -1,4 +1,4 @@
-#Randomized Optimizations in Machine Learning: An Analysis
+# Randomized Optimizations in Machine Learning: An Analysis
 
 This deep dive focused on three randomized optimization algorithms (Genetic Algorithm, Simulated Annealing, and Random Hill Climbing) and their implementations within a neural network as well as two unique search problems; the project was primarily completed with python 2.7 and ABAGAIL: an open source machine learning library written in JAVA.
 
