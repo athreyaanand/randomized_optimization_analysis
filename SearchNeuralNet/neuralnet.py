@@ -12,19 +12,15 @@ from timeit import default_timer as timer
 
 df = pd.read_csv("nursery.csv")
 
-# Convert strings into frequency numbers
 labelencoder=LabelEncoder()
 for col in df.columns:
     df[col] = labelencoder.fit_transform(df[col])
 
-# Split into train and test
 train, test = train_test_split(df, test_size = 0.35)
 
 label = 'result'
-# Train set
 train_y = train[label]
 train_x = train[[x for x in train.columns if label not in x]]
-# Test/Validation set
 test_y = test[label]
 test_x = test[[x for x in test.columns if label not in x]]
 
@@ -35,11 +31,8 @@ hiddens = tuple(5 * [2])
 print 'Neural Network with Backprop'
 print '*******************************************'
 
-# For the neural network, experiment on different number of hidden layers
 for ite in [10, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
 
-
-    # Define the classifier
     start = timer()
     clf = MLPClassifier(solver='lbfgs', hidden_layer_sizes=hiddens, max_iter=ite, random_state=1)
     clf.fit(train_x, train_y)
@@ -72,14 +65,12 @@ for ite in [10, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
 # fig.savefig('figures/nursery_nn_hidden.png')
 # plt.close(fig)
 
-# # For the neural network, experiment on different number of neurons
 # training_accuracy = []
 # validation_accuracy = []
 # test_accuracy = []
 # neurons = range(1,65)
 
 # for neuron in neurons:
-#     # Define the classifier
 #     hiddens = tuple(2 * [neuron])
 #     clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=hiddens, random_state=1)
 #     clf.fit(train_x, train_y)
@@ -100,19 +91,16 @@ for ite in [10, 50, 100, 200, 300, 400, 500, 600, 700, 800, 900, 1000]:
 # fig.savefig('figures/nursery_nn_neuron_(4 hidden).png')
 # plt.close(fig)
 
-# # After finding the right hidden layer value, experiment on training set size
 # training_accuracy = []
 # test_accuracy = []
 # training_size = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
 
 # for s in training_size:
-#     # Define the classifier
 #     hiddens = tuple(2 * [32])
 #     clf = MLPClassifier(solver='lbfgs', alpha=1e-5, hidden_layer_sizes=hiddens, random_state=1)
 
 #     temp_train, _ = train_test_split(train, test_size= 1 - s, random_state=1)
 
-#     # Train set
 #     percent_train_y = temp_train[label]
 #     percent_train_x = temp_train[[x for x in train.columns if label not in x]]
 
